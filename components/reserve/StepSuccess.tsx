@@ -119,8 +119,6 @@ export function StepSuccess() {
         />
       )}
 
-      <div className="reserve-confetti no-print pointer-events-none fixed inset-0 z-[5] overflow-hidden" aria-hidden />
-
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

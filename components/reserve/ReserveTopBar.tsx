@@ -20,7 +20,7 @@ export function ReserveTopBar() {
   const pct = (step / 4) * 100;
 
   return (
-    <header className="relative z-20 border-b border-white/10 bg-[#050507]/90 px-4 py-3 backdrop-blur-md md:px-8">
+    <header className="relative z-20 border-b border-white/10 bg-[rgba(5,5,7,0.9)] px-4 py-3 backdrop-blur-md md:px-8">
       <div className="mx-auto flex max-w-6xl flex-col gap-3">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Link

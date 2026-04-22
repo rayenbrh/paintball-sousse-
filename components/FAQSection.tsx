@@ -27,7 +27,7 @@ export function FAQSection() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="relative overflow-hidden bg-[#08080f] px-4 py-24 md:px-10">
+    <section id="faq" className="relative overflow-hidden bg-transparent px-4 py-24 md:px-10">
       <FaqAccentBall />
 
       <div className="relative z-[1] mx-auto max-w-3xl">
@@ -43,10 +43,10 @@ export function FAQSection() {
             return (
               <div
                 key={keys.q}
-                className={`rounded-2xl border bg-black-card/70 backdrop-blur-xl transition-colors ${
+                className={`rounded-2xl border backdrop-blur-xl transition-colors ${
                   isOpen
-                    ? "border-brand-red/70 border-s-4 border-s-[#E8001C]"
-                    : "border-white/10"
+                    ? "border-brand-red/70 border-s-4 border-s-[#E8001C] bg-[rgba(232,0,28,0.08)]"
+                    : "border-white/10 bg-[rgba(13,13,18,0.85)]"
                 }`}
               >
                 <button

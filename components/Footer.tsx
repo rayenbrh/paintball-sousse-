@@ -16,7 +16,7 @@ export function Footer() {
   const { t } = useI18n();
 
   return (
-    <footer className="relative overflow-hidden bg-[#050507] px-4 py-16 md:px-10">
+    <footer className="relative overflow-hidden border-t border-[rgba(232,0,28,0.2)] bg-[rgba(5,5,7,0.95)] px-4 py-16 backdrop-blur-sm md:px-10">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 footer-sweep opacity-40"

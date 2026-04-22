@@ -1,92 +1,24 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ICONS } from "@/icons";
 import { PBIcon } from "@/components/ui/PBIcon";
-import { useEffect, useState } from "react";
 import { HeroCharacterSlot } from "@/components/HeroCharacterImage";
 import { PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/constants";
 import { useI18n } from "@/lib/i18n";
 
-const PaintballCanvas = dynamic(
-  () =>
-    import("@/components/3d/PaintballCanvas").then((m) => m.PaintballCanvas),
-  { ssr: false },
-);
-
 export function HeroSection() {
   const { t } = useI18n();
-  const [mobile, setMobile] = useState(false);
-  const [tiny, setTiny] = useState(false);
 
   const { scrollY } = useScroll();
   const chevronOpacity = useTransform(scrollY, [0, 120], [1, 0]);
 
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 1023px)");
-    const upd = () => setMobile(mq.matches);
-    upd();
-    mq.addEventListener("change", upd);
-    return () => mq.removeEventListener("change", upd);
-  }, []);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 479px)");
-    const upd = () => setTiny(mq.matches);
-    upd();
-    mq.addEventListener("change", upd);
-    return () => mq.removeEventListener("change", upd);
-  }, []);
-
-  useEffect(() => {
-    const checkCanvasParent = () => {
-      const el = document.querySelector("[data-hero-canvas]");
-      if (!el || !(el instanceof HTMLElement)) return;
-      const rect = el.getBoundingClientRect();
-      if (rect.width === 0 || rect.height === 0) {
-        el.style.width = "100%";
-        el.style.minHeight = "100vh";
-      }
-    };
-    checkCanvasParent();
-    window.addEventListener("resize", checkCanvasParent);
-    return () => window.removeEventListener("resize", checkCanvasParent);
-  }, []);
-
   return (
     <section
       id="home"
-      className="hero-section flex min-h-[100dvh] flex-col justify-center bg-[#050507] px-4 pb-10 pt-[calc(var(--navbar-height)+16px)] md:px-12 lg:pb-24 lg:pt-28"
+      className="hero-section relative flex min-h-[100dvh] flex-col justify-center bg-transparent px-4 pb-10 pt-[calc(var(--navbar-height)+16px)] md:px-12 lg:pb-24 lg:pt-28"
     >
-      <div
-        data-hero-canvas
-        data-mobile-visible
-        className="pointer-events-none absolute inset-0 z-0 min-h-full w-full overflow-hidden"
-      >
-        {!tiny ? (
-          <PaintballCanvas mobile={mobile} />
-        ) : (
-          <div className="absolute inset-0 overflow-hidden" aria-hidden>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(232,0,28,0.12),transparent_55%)]" />
-            <div className="absolute left-[12%] top-[22%] h-1.5 w-1.5 animate-pulse rounded-full bg-brand-red/70" />
-            <div
-              className="absolute left-[55%] top-[38%] h-1 w-1 animate-pulse rounded-full bg-brand-red/50"
-              style={{ animationDelay: "0.4s" }}
-            />
-            <div
-              className="absolute bottom-[30%] left-[40%] h-1.5 w-1.5 animate-pulse rounded-full bg-brand-red/40"
-              style={{ animationDelay: "0.8s" }}
-            />
-            <div
-              className="absolute right-[18%] top-[48%] h-1 w-1 animate-pulse rounded-full bg-brand-red/60"
-              style={{ animationDelay: "1.1s" }}
-            />
-          </div>
-        )}
-      </div>
-
       <div className="relative z-[2] mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[minmax(0,55%)_minmax(0,45%)] lg:items-center lg:gap-10">
         <div className="flex min-w-0 flex-col">
           <motion.div

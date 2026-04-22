@@ -48,7 +48,7 @@ export function GallerySection() {
   return (
     <section
       id="gallery"
-      className="section-padding bg-black-deep"
+      className="section-padding bg-transparent"
       style={{ paddingTop: "clamp(60px, 10vw, 100px)", paddingBottom: "clamp(60px, 10vw, 100px)" }}
     >
       <div className="section-title-block mx-auto max-w-7xl px-4">

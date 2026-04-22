@@ -28,14 +28,14 @@ export function ContactSection() {
   const { t } = useI18n();
 
   return (
-    <section id="contact" className="bg-black-deep px-4 py-24 md:px-10">
+    <section id="contact" className="bg-transparent px-4 py-24 md:px-10">
       <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-2 lg:items-start">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="rounded-3xl border border-white/10 bg-black-card/70 p-8 shadow-card backdrop-blur-xl md:p-10"
+          className="rounded-3xl border border-white/10 bg-[rgba(13,13,18,0.85)] p-8 shadow-card backdrop-blur-xl md:p-10"
         >
           <h2 className="font-display text-4xl tracking-[0.12em] text-white md:text-5xl">
             {t("contact_reach_title")}
@@ -121,7 +121,7 @@ export function ContactSection() {
           <div className="grid gap-4 sm:grid-cols-2">
             <a
               href={`mailto:${EMAIL}`}
-              className="flex min-h-[52px] items-center gap-3 rounded-2xl border border-white/10 bg-black-card/70 px-4 py-3 font-body text-white transition hover:border-brand-red/60"
+              className="flex min-h-[52px] items-center gap-3 rounded-2xl border border-white/10 bg-[rgba(13,13,18,0.85)] px-4 py-3 font-body text-white backdrop-blur-md transition hover:border-brand-red/60"
             >
               <PBIcon icon={ICONS.email} size={20} color="#E8001C" aria-hidden />
               {EMAIL}
@@ -130,7 +130,7 @@ export function ContactSection() {
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex min-h-[52px] items-center gap-3 rounded-2xl border border-white/10 bg-black-card/70 px-4 py-3 font-body text-white transition hover:border-brand-red/60"
+              className="flex min-h-[52px] items-center gap-3 rounded-2xl border border-white/10 bg-[rgba(13,13,18,0.85)] px-4 py-3 font-body text-white backdrop-blur-md transition hover:border-brand-red/60"
             >
               <PBIcon icon={ICONS.instagram} size={20} color="#E8001C" aria-hidden />
               @paintball_sousse
@@ -139,7 +139,7 @@ export function ContactSection() {
               href={FACEBOOK_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex min-h-[52px] items-center gap-3 rounded-2xl border border-white/10 bg-black-card/70 px-4 py-3 font-body text-white transition hover:border-brand-red/60 sm:col-span-2"
+              className="flex min-h-[52px] items-center gap-3 rounded-2xl border border-white/10 bg-[rgba(13,13,18,0.85)] px-4 py-3 font-body text-white backdrop-blur-md transition hover:border-brand-red/60 sm:col-span-2"
             >
               <PBIcon icon={ICONS.facebook} size={20} color="#E8001C" aria-hidden />
               Paintball Sousse

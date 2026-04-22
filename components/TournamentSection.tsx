@@ -57,14 +57,14 @@ export function TournamentSection() {
   return (
     <section
       id="tournament"
-      className="relative overflow-hidden bg-[#07070c] px-4 py-24 md:px-10"
+      className="relative overflow-hidden bg-transparent px-4 py-24 md:px-10"
     >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(900px 420px at 50% -10%, rgba(232,0,28,0.35), transparent 60%)",
+            "radial-gradient(900px 420px at 50% -10%, rgba(232,0,28,0.18), transparent 60%)",
         }}
       />
 
@@ -127,7 +127,7 @@ export function TournamentSection() {
                 key={u.label}
                 animate={{ scale: [1, 1.03, 1] }}
                 transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-                className="rounded-2xl border border-white/10 bg-black-card/90 px-4 py-6 text-center shadow-card"
+                className="rounded-2xl border border-white/10 bg-[rgba(13,13,18,0.9)] px-4 py-6 text-center shadow-card backdrop-blur-md"
               >
                 <p className="font-mono text-4xl text-brand-red md:text-5xl">
                   {String(u.value).padStart(2, "0")}

@@ -4,7 +4,6 @@ import { Suspense, useLayoutEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useReservationStore } from "@/store/reservationStore";
 import { ReserveUrlSync } from "@/components/reserve/ReserveUrlSync";
-import { ReserveBackground } from "@/components/reserve/ReserveBackground";
 import { ReserveIntro } from "@/components/reserve/ReserveIntro";
 import { ReserveTopBar } from "@/components/reserve/ReserveTopBar";
 import { StepCalendar } from "@/components/reserve/StepCalendar";
@@ -39,7 +38,7 @@ export function ReservePage() {
   if (!ready) {
     return (
       <div
-        className="relative min-h-dvh bg-[#050507]"
+        className="relative min-h-dvh bg-transparent"
         aria-hidden
       />
     );
@@ -69,11 +68,10 @@ export function ReservePage() {
   };
 
   return (
-    <div className="relative min-h-dvh bg-[#050507] text-white">
+    <div className="relative min-h-dvh bg-transparent text-white">
       <Suspense fallback={null}>
         <ReserveUrlSync />
       </Suspense>
-      <ReserveBackground />
       <PaintTrailCursor />
       <AmbientAudioToggle />
 

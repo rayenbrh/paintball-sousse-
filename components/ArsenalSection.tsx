@@ -39,7 +39,7 @@ function PackageTooltip({ row }: { row: ArsenalPackageRow }) {
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="absolute right-0 top-10 z-20 w-56 rounded-lg border border-white/15 bg-[#1a1a22] p-3 text-left font-body text-[11px] leading-snug text-muted shadow-xl"
+            className="absolute right-0 top-10 z-20 w-56 rounded-lg border border-white/15 bg-[rgba(26,26,34,0.95)] p-3 text-left font-body text-[11px] leading-snug text-muted shadow-xl backdrop-blur-md"
           >
             Environ {spm} billes/min sur cette durée — chargez plus sur place si besoin.
           </motion.div>
@@ -69,7 +69,7 @@ function LoadoutCard({ row }: { row: ArsenalPackageRow }) {
 
   return (
     <motion.div
-      className={`relative rounded-2xl border bg-[#0D0D12] p-6 transition ${
+      className={`relative rounded-2xl border border-white/[0.08] bg-[rgba(13,13,18,0.88)] p-6 backdrop-blur-md transition ${
         commander ? "arsenal-commander-border border-[#FFD700]/80" : "border-white/[0.06]"
       }`}
       whileHover={{ scale: 1.02, borderColor: tier.color }}
@@ -137,7 +137,7 @@ function LoadoutCard({ row }: { row: ArsenalPackageRow }) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="absolute bottom-full left-0 right-0 z-30 mb-2 rounded-lg border border-[#E8001C]/40 bg-[#12121A] p-3 font-body text-xs text-muted shadow-lg"
+            className="absolute bottom-full left-0 right-0 z-30 mb-2 rounded-lg border border-[#E8001C]/40 bg-[rgba(18,18,26,0.92)] p-3 font-body text-xs text-muted shadow-lg backdrop-blur-md"
           >
             💡 PRO TIP: Most groups choose 100–120 balls for the best experience. You can always recharge during
             the game!
@@ -152,10 +152,7 @@ export function ArsenalSection() {
   return (
     <section
       id="arsenal"
-      className="relative overflow-hidden px-4 py-24 md:px-10"
-      style={{
-        background: "linear-gradient(180deg, #050507 0%, #0d0d12 50%, #050507 100%)",
-      }}
+      className="relative overflow-hidden bg-transparent px-4 py-24 md:px-10"
     >
       <div className="relative z-[1] mx-auto max-w-7xl">
         <motion.p
@@ -195,7 +192,7 @@ export function ArsenalSection() {
           {GAME_MODES.map((m) => (
             <motion.div
               key={m.id}
-              className="min-w-[220px] shrink-0 snap-start rounded-2xl border border-white/[0.07] bg-[#12121A] p-5"
+              className="min-w-[220px] shrink-0 snap-start rounded-2xl border border-white/[0.07] bg-[rgba(18,18,26,0.88)] p-5 backdrop-blur-md"
               whileHover={{ y: -4, borderColor: "rgba(232,0,28,0.5)" }}
             >
               <span className="text-4xl">{m.icon}</span>
@@ -219,7 +216,7 @@ export function ArsenalSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="arsenal-pulse-border mt-16 rounded-2xl border border-[#E8001C]/50 bg-[#E8001C]/10 px-6 py-5 text-center"
+          className="arsenal-pulse-border mt-16 rounded-2xl border border-[#E8001C]/50 bg-[rgba(26,0,5,0.75)] px-6 py-5 text-center backdrop-blur-md"
         >
           <p className="font-display text-xl text-white md:text-2xl">
             👥 GROUPS OF 10+ GET PRIORITY BOOKING — CALL US TO ARRANGE
@@ -240,7 +237,7 @@ export function ArsenalSection() {
           {RECHARGES_HOME.map((r) => (
             <motion.div
               key={r.balls}
-              className="rounded-2xl border border-white/10 bg-[#12121A] p-5 text-center"
+              className="rounded-2xl border border-white/10 bg-[rgba(18,18,26,0.88)] p-5 text-center backdrop-blur-md"
               style={{ borderColor: `${r.color}44` }}
               whileHover={{ scale: 1.05 }}
             >
@@ -262,9 +259,10 @@ export function ArsenalSection() {
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="mt-20 px-4 py-20 text-center"
+          className="mt-20 px-4 py-20 text-center backdrop-blur-[2px]"
           style={{
-            background: "linear-gradient(135deg, #0D0D12 0%, #1a0005 50%, #0D0D12 100%)",
+            background:
+              "linear-gradient(135deg, rgba(13,13,18,0.5) 0%, rgba(26,0,5,0.65) 50%, rgba(13,13,18,0.5) 100%)",
             borderTop: "1px solid rgba(232,0,28,0.3)",
             borderBottom: "1px solid rgba(232,0,28,0.3)",
           }}

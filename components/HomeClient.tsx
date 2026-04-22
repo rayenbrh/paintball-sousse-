@@ -10,7 +10,7 @@ import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 
 const HeroSection = dynamic(
   () => import("@/components/HeroSection").then((m) => m.HeroSection),
-  { loading: () => <div className="min-h-[100dvh] bg-black-deep" /> },
+  { loading: () => <div className="min-h-[100dvh] bg-transparent" /> },
 );
 
 const ExperiencesSection = dynamic(
