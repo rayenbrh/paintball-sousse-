@@ -35,6 +35,7 @@ type State = {
   preset: Preset
   setPreset: (p: Preset) => void
   setStep: (s: ReserveStep, dir?: 1 | -1) => void
+  previousStep: () => void
   setSquadPhase: (p: SquadPhase) => void
   setDate: (d: string | null) => void
   setTimeSlot: (t: string | null) => void
@@ -65,6 +66,7 @@ const initial: Omit<
   State,
   | 'setPreset'
   | 'setStep'
+  | 'previousStep'
   | 'setSquadPhase'
   | 'setDate'
   | 'setTimeSlot'
@@ -82,10 +84,10 @@ const initial: Omit<
   squadPhase: 'size',
   date: null,
   timeSlot: null,
-  squadSize: 4,
+  squadSize: 6,
   gameMode: null,
   surpriseMode: false,
-  players: buildPlayers(4),
+  players: buildPlayers(6),
   currentPlayerIndex: 0,
   preset: null,
 }
@@ -94,11 +96,42 @@ export const useReservationStore = create<State>((set, get) => ({
   ...initial,
   setPreset: (preset) => set({ preset }),
   setStep: (step, dir = 1) => set({ step, direction: dir }),
+  previousStep: () => {
+    const { step, squadPhase } = get()
+    if (step === 'calendar') return
+
+    if (step === 'squad') {
+      if (squadPhase === 'character') {
+        set({ squadPhase: 'mode', direction: -1 })
+        return
+      }
+      if (squadPhase === 'mode') {
+        set({ squadPhase: 'size', direction: -1 })
+        return
+      }
+      set({ step: 'calendar', direction: -1 })
+      return
+    }
+
+    if (step === 'briefing') {
+      set({
+        step: 'squad',
+        direction: -1,
+        currentPlayerIndex: 0,
+        squadPhase: 'character',
+      })
+      return
+    }
+
+    if (step === 'success') {
+      set({ step: 'briefing', direction: -1 })
+    }
+  },
   setSquadPhase: (squadPhase) => set({ squadPhase }),
   setDate: (date) => set({ date }),
   setTimeSlot: (timeSlot) => set({ timeSlot }),
   setSquadSize: (n) => {
-    const size = Math.min(20, Math.max(4, n))
+    const size = Math.min(20, Math.max(6, n))
     set({ squadSize: size, players: buildPlayers(size), currentPlayerIndex: 0 })
   },
   setGameMode: (gameMode) => set({ gameMode, surpriseMode: false }),
@@ -137,7 +170,7 @@ export const useReservationStore = create<State>((set, get) => ({
       set({ step: 'briefing', direction: 1 })
     }
   },
-  reset: () => set({ ...initial, players: buildPlayers(4) }),
+  reset: () => set({ ...initial, players: buildPlayers(6) }),
 }))
 
 export function stepIndex(step: ReserveStep): number {

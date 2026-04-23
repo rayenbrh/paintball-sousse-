@@ -51,7 +51,13 @@ export default function ReserveClient() {
   }, [searchParams, setPreset])
 
   return (
-    <div className="min-h-[100dvh] pb-16">
+    <div
+      className={
+        intro
+          ? 'min-h-[100dvh]'
+          : `flex min-h-[100dvh] flex-col ${step === 'squad' ? 'overflow-x-visible overflow-y-visible pb-2' : 'overflow-x-hidden pb-16'}`
+      }
+    >
       {intro ? (
         <ReserveIntro onStart={() => setIntro(false)} />
       ) : (
@@ -65,7 +71,13 @@ export default function ReserveClient() {
               initial="initial"
               animate="animate"
               exit="exit"
-              className="will-change-transform"
+              className={
+                step === 'squad'
+                  ? 'will-change-transform flex min-h-0 min-w-0 w-full max-w-full flex-1 flex-col overflow-x-visible overflow-y-visible'
+                  : step === 'briefing'
+                    ? 'will-change-transform flex min-h-0 min-w-0 w-full max-w-full flex-1 flex-col overflow-hidden'
+                    : 'will-change-transform flex min-h-0 w-full flex-1 flex-col'
+              }
             >
               {step === 'calendar' ? <StepCalendar /> : null}
               {step === 'squad' ? <StepSquad /> : null}

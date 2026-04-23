@@ -103,12 +103,14 @@ export function StepBriefing() {
   }
 
   return (
-    <div className="container-pb max-w-5xl py-10">
-      <h2 className="text-display-sm text-[var(--text-primary)]">{t('reserve.brief.title')}</h2>
-      <p className="text-body-md mt-3 text-[var(--text-secondary)]">{t('reserve.brief.sub')}</p>
+    <div
+      className={`container-pb flex max-h-full min-h-0 max-w-5xl flex-1 flex-col py-5 sm:py-6 ${showForm ? 'overflow-y-auto' : 'overflow-hidden'}`}
+    >
+      <h2 className="text-display-sm leading-tight text-[var(--text-primary)]">{t('reserve.brief.title')}</h2>
+      <p className="text-body-md mt-2 text-[var(--text-secondary)]">{t('reserve.brief.sub')}</p>
 
-      <div className="mt-8 pb-card p-7">
-        <div className="grid gap-4 md:grid-cols-2">
+      <div className="mt-5 pb-card p-5 sm:p-6">
+        <div className="grid gap-3 md:grid-cols-2">
           <Row icon="calendar" label={t('reserve.brief.date')} value={formattedDate} />
           <Row icon="clock" label={t('reserve.brief.time')} value={timeSlot ?? '—'} />
           <Row icon="target" label={t('reserve.brief.mode')} value={modeLabel} />
@@ -116,7 +118,7 @@ export function StepBriefing() {
         </div>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="mt-5 grid min-h-0 flex-1 grid-cols-1 gap-4 overflow-hidden lg:grid-cols-2">
         <TeamCard
           title={t('reserve.brief.red')}
           accent="var(--red)"
@@ -133,15 +135,15 @@ export function StepBriefing() {
         />
       </div>
 
-      <div className="mt-10 text-center">
+      <div className="mt-5 shrink-0 text-center">
         <p className="pb-label">{t('reserve.brief.grand')}</p>
-        <div className="text-data-lg text-[var(--text-primary)]">
+        <div className="font-data text-[clamp(28px,5vw,52px)] font-bold leading-none text-[var(--text-primary)]">
           {displayTotal} DT
         </div>
-        <p className="mt-3 font-body text-[14px] text-[var(--text-muted)]">{t('reserve.brief.payNote')}</p>
+        <p className="mt-2 font-body text-[13px] text-[var(--text-muted)]">{t('reserve.brief.payNote')}</p>
       </div>
 
-      <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-5 flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <button
           type="button"
           className="min-h-[48px] rounded-md border border-[var(--border)] bg-transparent px-6 font-body text-[14px] font-semibold text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--text-primary)]"
@@ -170,10 +172,10 @@ export function StepBriefing() {
         <motion.form
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-8 pb-card p-6"
+          className="mt-5 shrink-0 pb-card p-4 sm:p-5"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-3 md:grid-cols-2">
             <div>
               <label className="pb-label mb-2 block">{t('reserve.brief.name')}</label>
               <input
@@ -195,7 +197,7 @@ export function StepBriefing() {
               ) : null}
             </div>
           </div>
-          <div className="mt-6">
+          <div className="mt-4">
             <RedButton type="submit" className="w-full">
               {t('reserve.brief.send')} →
             </RedButton>
@@ -234,11 +236,13 @@ function TeamCard({
   t: (k: string) => string
 }) {
   return (
-    <div className="pb-card overflow-hidden" style={{ borderTop: `3px solid ${accent}` }}>
-      <div className="border-b border-[var(--border)] px-5 py-4">
-        <h3 className="font-display text-[24px] uppercase text-[var(--text-primary)]">{title}</h3>
+    <div className="flex min-h-0 flex-col overflow-hidden pb-card" style={{ borderTop: `3px solid ${accent}` }}>
+      <div className="shrink-0 border-b border-[var(--border)] px-4 py-2.5 sm:px-5 sm:py-3">
+        <h3 className="font-display text-[20px] uppercase leading-tight text-[var(--text-primary)] sm:text-[22px]">
+          {title}
+        </h3>
       </div>
-      <div className="divide-y divide-[var(--border)] px-2">
+      <div className="min-h-0 flex-1 divide-y divide-[var(--border)] overflow-hidden px-2">
         {players.map((p, i) => {
           const opt = p.classId ? getClassOption(p.classId, p.optionIndex) : null
           const initials = (p.name || `J${i + 1}`).slice(0, 2).toUpperCase()
@@ -248,7 +252,7 @@ function TeamCard({
               initial={{ opacity: 0, x: -12 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.06 }}
-              className="flex items-center gap-3 px-3 py-3"
+              className="flex items-center gap-3 px-3 py-2 sm:py-2.5"
             >
               <div
                 className="flex h-10 w-10 items-center justify-center rounded-full font-body text-[12px] font-bold text-white"
@@ -268,7 +272,7 @@ function TeamCard({
           )
         })}
       </div>
-      <div className="flex items-center justify-between px-5 py-4">
+      <div className="flex shrink-0 items-center justify-between px-4 py-2.5 sm:px-5 sm:py-3">
         <span className="font-body text-[13px] text-[var(--text-muted)]">{t('reserve.brief.totalTeam')}</span>
         <span className="font-data text-[16px]" style={{ color: accent }}>
           {total} DT

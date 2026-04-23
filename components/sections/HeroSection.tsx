@@ -104,7 +104,7 @@ export default function HeroSection() {
           <motion.div
             animate={{ y: [0, -16, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="relative w-full max-w-[260px] sm:max-w-sm lg:max-w-none"
+            className="relative w-full max-w-[340px] sm:max-w-lg md:max-w-xl lg:max-w-none"
             style={{ filter: 'drop-shadow(0 0 60px rgba(232,0,28,0.4))' }}
           >
             <Image
@@ -112,9 +112,9 @@ export default function HeroSection() {
               alt="Personnage paintball"
               width={720}
               height={900}
-              className="mx-auto h-auto max-h-[280px] w-full object-contain lg:max-h-[85vh]"
+              className="mx-auto h-auto max-h-[min(48dvh,420px)] w-full object-contain sm:max-h-[min(52dvh,480px)] lg:max-h-[min(92vh,920px)]"
               priority
-              sizes="(max-width: 1024px) 260px, 45vw"
+              sizes="(max-width: 640px) 340px, (max-width: 1024px) 576px, 52vw"
             />
           </motion.div>
         </motion.div>

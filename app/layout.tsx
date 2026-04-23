@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="font-body antialiased" style={{ background: '#0F0E11', overflowX: 'hidden' }}>
+      <body className="font-body antialiased" style={{ background: '#0F0E11' }}>
         <ParticleBackground />
         <div className="relative z-[2]">
           <Providers>{children}</Providers>
